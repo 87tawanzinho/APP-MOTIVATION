@@ -8,7 +8,7 @@ import com.example.motivation.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
-    private lateinit var  binding: ActivityMainBinding
+    private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -17,13 +17,19 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(binding.root)
 
         supportActionBar?.hide()
+        handleUserName()
 
         binding.newPhraseButton.setOnClickListener(this)
     }
 
     override fun onClick(v: View) {
-        if(v.id == R.id.new_phrase_button) {
+        if (v.id == R.id.new_phrase_button) {
             Toast.makeText(this, "Progress", Toast.LENGTH_LONG).show()
         }
+    }
+
+    fun handleUserName() {
+        val name = SecurityPreferences(this).getString("name")
+        binding.userName.text = "Oi, ${name}"
     }
 }
