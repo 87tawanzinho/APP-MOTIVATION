@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     fun handleUserName() {
-        val name = SecurityPreferences(this).getString("name")
+        val name = SecurityPreferences(this).getString(MotivationConstants.Key.name)
         binding.userName.text = "Oi, ${name}"
     }
 }
