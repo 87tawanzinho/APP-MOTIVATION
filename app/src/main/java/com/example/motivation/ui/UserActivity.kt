@@ -18,6 +18,8 @@ class UserActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(binding.root)
 
         binding.buttonSave.setOnClickListener(this)
+
+        verifyUserName()
     }
 
     override fun onClick(v: View) {
@@ -26,7 +28,16 @@ class UserActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+    private fun verifyUserName() {
+        val name = SecurityPreferences(this).getString(MotivationConstants.Key.name)
+
+        if(name !== "") {
+            startActivity( Intent(this, MainActivity::class.java))
+            finish()
+        }
+    }
     private fun handleSave() {
+
         val name = binding.editName.text.toString()
 
         if (name != "") {
